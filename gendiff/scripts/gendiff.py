@@ -1,20 +1,37 @@
-import argparse
 import json
-import os
+import argparse
+
+
+def generate_diff(first_dict, second_dict):
+        diff_dict = {}
+        for key in first_dict:
+            if key not in second_dict:
+                diff_dict[f'- {key}'] = first_dict[key]
+            else:
+                if first_dict[key] == second_dict[key]:
+                    diff_dict[key] = first_dict[key]
+                else:
+                    diff_dict[f'- {key}'] = first_dict[key]
+                    diff_dict[f'+ {key}'] = second_dict[key]
+        for key in second_dict:
+            if key not in first_dict:
+                diff_dict[f'+ {key}'] = second_dict[key]
+        return diff_dict
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        prog='gendiff',
-        description='Compares two configuration files and shows a difference.'
-        )
-    parser.add_argument('first_file', help='file1.json')
-    parser.add_argument('second_file', help='file2.json')
-    parser.add_argument('-f', '--format', help='set format of output', default='stylish')
-    parser.print_help()
+    parser = argparse.ArgumentParser(description='Compares two JSON files and shows the difference.')
+    parser.add_argument('first_file', type=str, help='Path to the first JSON file')
+    parser.add_argument('second_file', type=str, help='Path to the second JSON file')
+    args = parser.parse_args()
 
-    json.load(open('С:\\Python\\python-project-50\\gendiff\\scripts\\file1.json'))
-    json.load(open('С:\\Python\\python-project-50\\gendiff\\scripts\\file2.json'))
+    first_dict = json.load(open(args.first_file))
+    second_dict = json.load(open(args.second_file))
+
+    diff = generate_diff(first_dict, second_dict)
+    for key, value in diff.items():
+        print(f'{key}: {value}')
+
 
 if __name__ == "__main__":    
     main()
