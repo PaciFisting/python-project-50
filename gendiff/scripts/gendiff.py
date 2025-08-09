@@ -3,20 +3,26 @@ import argparse
 
 
 def generate_diff(first_dict, second_dict):
-        diff_dict = {}
-        for key in first_dict:
-            if key not in second_dict:
-                diff_dict[f'- {key}'] = first_dict[key]
+    diff_dict = {}
+    for key in first_dict:
+        if key not in second_dict:
+            diff_dict[f'  - {key}'] = first_dict[key]
+        else:
+            if first_dict[key] == second_dict[key]:
+                diff_dict[f'    {key}'] = first_dict[key]
             else:
-                if first_dict[key] == second_dict[key]:
-                    diff_dict[key] = first_dict[key]
-                else:
-                    diff_dict[f'- {key}'] = first_dict[key]
-                    diff_dict[f'+ {key}'] = second_dict[key]
-        for key in second_dict:
-            if key not in first_dict:
-                diff_dict[f'+ {key}'] = second_dict[key]
-        return diff_dict
+                diff_dict[f'  - {key}'] = first_dict[key]
+                diff_dict[f'  + {key}'] = second_dict[key]
+    for key in second_dict:
+        if key not in first_dict:
+            diff_dict[f'  + {key}'] = second_dict[key]
+    sorted_diff = dict(sorted(diff_dict.items(), key=lambda x: x[0].lstrip('+- ')))
+    return sorted_diff
+
+
+def sort_diff_dict(diff_dict):
+    for key in diff_dict:
+        True
 
 
 def main():
@@ -29,8 +35,10 @@ def main():
     second_dict = json.load(open(args.second_file))
 
     diff = generate_diff(first_dict, second_dict)
+    print('{')
     for key, value in diff.items():
         print(f'{key}: {value}')
+    print('}')
 
 
 if __name__ == "__main__":    
