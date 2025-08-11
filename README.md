@@ -2,3 +2,5 @@
 [![Actions Status](https://github.com/PaciFisting/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/PaciFisting/python-project-50/actions)
 
 [![Python CI](https://github.com/PaciFisting/python-project-50/actions/workflows/python-CI.yml/badge.svg)](https://github.com/PaciFisting/python-project-50/actions/workflows/python-CI.yml)
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=PaciFisting_python-project-50)](https://sonarcloud.io/summary/new_code?id=PaciFisting_python-project-50)
