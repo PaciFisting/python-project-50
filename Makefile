@@ -9,5 +9,8 @@ gendiff:
 lint:
 	uv run ruff check gendiff --fix
 
+pytest:
+	pip install pytest
+
 check: 
 	python -m pytest
