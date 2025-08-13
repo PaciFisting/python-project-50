@@ -1,18 +1,13 @@
-from pathlib import Path
-from gendiff.scripts.gendiff import main
+from gendiff.scripts.gendiff import make_diff
 
-def get_test_data_path(filename):
-    return Path(__file__).parent / "test_data" / filename
-
-def read_file(filename):
-    return get_test_data_path(filename).read_text()
-
-def test_comparison():
-    expected = '{' \
-    '  - follow: False' \
-    '  host: hexlet.io' \
-    '  - proxy: 123.234.53.22' \
-    '  - timeout: 50' \
-    '  + timeout: 20' \
-    '  + verbose: True' \
+def test_data():
+    expected = '{\n' \
+    '    - follow: False\n' \
+    '      host: hexlet.io\n' \
+    '    - proxy: 123.234.53.22\n' \
+    '    - timeout: 50\n' \
+    '    + timeout: 20\n' \
+    '    + verbose: True\n' \
     '}'
+
+    assert make_diff() == expected

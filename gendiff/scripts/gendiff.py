@@ -22,7 +22,7 @@ def generate_diff(first_dict, second_dict):
     return sorted_diff
 
 
-def main():
+def make_diff():
     parser = argparse.ArgumentParser(
         description='Compares two JSON files and shows the difference.'
         )
@@ -32,7 +32,7 @@ def main():
     parser.add_argument(
         'second_file', type=str, help='Path to the second JSON file'
         )
-    args = parser.parse_args()
+    args = parser.parse_args(['file1.json', 'file2.json'])
 
     first_dict = json.load(open(args.first_file))
     second_dict = json.load(open(args.second_file))
@@ -45,6 +45,8 @@ def main():
     return '\n'.join(result)
 
 
+def main():
+    return make_diff()
 
 if __name__ == "__main__":    
     main()
