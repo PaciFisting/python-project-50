@@ -1,5 +1,6 @@
 from gendiff.scripts.gendiff import make_diff
 
+
 def test_data():
     expected = '{\n' \
     '    - follow: False\n' \

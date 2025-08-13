@@ -48,5 +48,6 @@ def make_diff():
 def main():
     return make_diff()
 
+
 if __name__ == "__main__":    
     main()
