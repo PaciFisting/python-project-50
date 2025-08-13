@@ -8,3 +8,6 @@ gendiff:
 
 lint:
 	uv run ruff check gendiff --fix
+
+check:
+	python -m pytest
