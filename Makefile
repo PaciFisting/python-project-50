@@ -12,3 +12,7 @@ lint:
 check: 
 	pip install pytest
 	python -m pytest
+
+test-coverage:
+	uv add pytest-cov
+	uv run pytest --cov
